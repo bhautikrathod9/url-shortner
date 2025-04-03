@@ -21,6 +21,10 @@ mongoose.connect(process.env.DATABASE_URL)
 
 const URL = require('./models/Url.js')
 
+app.get('/', (req, res) => {
+    res.send("api is working")
+})
+
 app.post('/shorten', async(req, res) => {
     const { longUrl } = req.body;
     const shortId = nanoid(7);
