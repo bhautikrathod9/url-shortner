@@ -14,7 +14,7 @@ function App() {
     }
 
     try {
-      const response = await axios.post("http://localhost:4000/shorten", { longUrl });
+      const response = await axios.post("https://url-shortner-u9g8.onrender.com/shorten", { longUrl });
       setShortUrl(response.data.shortUrl);
       toast.success("Short URL generated!");
     } catch (error) {
