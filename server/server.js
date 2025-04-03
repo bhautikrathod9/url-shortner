@@ -10,7 +10,7 @@ const PORT = process.env.PORT
 
 //middlewares
 app.use(express.json())
-app.use(cors({ origin: "http://localhost:3000" })); 
+app.use(cors({ origin: "https://url-shortner-omega-ten.vercel.app" })); 
 
 mongoose.connect(process.env.DATABASE_URL)
     .then(() => {
