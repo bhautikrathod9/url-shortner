@@ -8,9 +8,24 @@ const app = express();
 
 const PORT = process.env.PORT
 
+const corsOptions = {
+    origin: function (origin, callback) {
+      // Allow requests from specific origins
+      const allowedOrigins = ["https://url-shortner-omega-ten.vercel.app"];
+      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+    allowedHeaders: "X-CSRF-Token, X-Requested-With, Accept, Content-Type, Authorization"
+  };
+
 //middlewares
 app.use(express.json())
-app.use(cors({ origin: "https://url-shortner-omega-ten.vercel.app" })); 
+app.use(cors(corsOptions)); 
 
 mongoose.connect(process.env.DATABASE_URL)
     .then(() => {
