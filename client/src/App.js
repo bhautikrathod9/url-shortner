@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
+  const [darkMode, setDarkMode] = useState(true)
   const [longUrl, setLongUrl] = useState("");
   const [shortUrl, setShortUrl] = useState("");
 
@@ -27,9 +28,17 @@ function App() {
     toast.success("Copied to clipboard!");
   };
 
+  useEffect(() => {
+    document.body.className = darkMode ? "dark" : "light";
+  }, [darkMode]);
+
   return (
-    <div className="container">
+    <div className={`app ${darkMode ? "dark" : "light"}`}>
+      <div className="container">
       <ToastContainer />
+      <button className="toggle-btn" onClick={() => setDarkMode(!darkMode)}>
+        {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
+      </button>
       <h1>URL Shortener</h1>
       <input
         type="text"
@@ -46,6 +55,7 @@ function App() {
           <button onClick={copyToClipboard}>Copy</button>
         </div>
       )}
+      </div>
     </div>
   );
 }
