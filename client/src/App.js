@@ -50,7 +50,7 @@ function App() {
       
       {shortUrl && (
         <div className="result">
-          <p>Short URL:</p>
+          <p>Short URL : </p>
           <a href={shortUrl} target="_blank" rel="noopener noreferrer">{shortUrl}</a>
           <button onClick={copyToClipboard}>Copy</button>
         </div>
